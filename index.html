@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A responsive weather dashboard showing current conditions, hourly forecasts and upcoming weather.">
+  <title>SkyCast — Weather Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="SkyCast home"><span class="brand-mark">☀</span> SkyCast</a>
+      <div class="topbar-note">Weather, at a glance.</div>
+      <button id="unitToggle" class="unit-toggle" type="button" aria-label="Toggle temperature units">°C <span>/</span> °F</button>
+    </header>
+
+    <section class="intro">
+      <div>
+        <p class="eyebrow">YOUR WEATHER DASHBOARD</p>
+        <h1>Forecast with <span>clarity.</span></h1>
+        <p class="intro-copy">Current conditions and what the day has in store.</p>
+      </div>
+    </section>
+
+    <section class="search-area" aria-label="Weather search">
+      <form id="searchForm" class="search-box">
+        <span class="search-icon" aria-hidden="true">⌕</span>
+        <input id="cityInput" type="search" placeholder="Search a city, e.g. Accra" autocomplete="off" aria-label="Search city">
+        <button type="submit" id="searchBtn">Search</button>
+      </form>
+      <button class="location-btn" id="locationBtn" type="button"><span>◎</span> Use my location</button>
+    </section>
+
+    <div id="loading" class="status loading" hidden><span class="spinner"></span> Fetching forecast…</div>
+    <div id="error" class="status error" role="alert" hidden></div>
+
+    <section id="weatherDisplay" hidden>
+      <section class="hero-weather panel">
+        <div class="hero-left">
+          <div class="location-line"><span class="pin">⌖</span><h2 id="cityName">—</h2></div>
+          <p id="localTime" class="local-time">Local time</p>
+          <p id="description" class="condition">—</p>
+          <div class="temperature-line"><span id="temperature">—</span><span class="temp-unit" id="heroUnit">°C</span></div>
+          <p class="high-low" id="highLow">—</p>
+        </div>
+        <div class="hero-icon-wrap">
+          <img id="weatherIcon" src="" alt="" class="hero-icon">
+          <p id="dayLabel" class="day-label">Today</p>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <div class="section-heading"><div><p class="eyebrow">THE NEXT HOURS</p><h3>Hourly forecast</h3></div><span class="section-meta">Today</span></div>
+        <div id="hourlyForecast" class="hourly-list panel"></div>
+      </section>
+
+      <section class="section-block">
+        <div class="section-heading"><div><p class="eyebrow">PLAN AHEAD</p><h3>3-day forecast</h3></div></div>
+        <div id="dailyForecast" class="daily-list panel"></div>
+      </section>
+
+      <section class="section-block">
+        <div class="section-heading"><div><p class="eyebrow">AT A GLANCE</p><h3>Weather details</h3></div></div>
+        <div class="details-grid">
+          <article class="detail-card panel"><span class="detail-icon">◉</span><span class="detail-label">Feels like</span><strong id="feelsLike">—</strong></article>
+          <article class="detail-card panel"><span class="detail-icon">♧</span><span class="detail-label">Humidity</span><strong id="humidity">—</strong></article>
+          <article class="detail-card panel"><span class="detail-icon">➤</span><span class="detail-label">Wind</span><strong id="windSpeed">—</strong></article>
+          <article class="detail-card panel"><span class="detail-icon">⌁</span><span class="detail-label">UV index</span><strong id="uv">—</strong></article>
+          <article class="detail-card panel"><span class="detail-icon">◌</span><span class="detail-label">Pressure</span><strong id="pressure">—</strong></article>
+          <article class="detail-card panel"><span class="detail-icon">◷</span><span class="detail-label">Visibility</span><strong id="visibility">—</strong></article>
+        </div>
+      </section>
+    </section>
+
+    <section id="recentSection" class="section-block recent-section" hidden>
+      <div class="section-heading"><div><p class="eyebrow">QUICK ACCESS</p><h3>Recent searches</h3></div><button id="clearRecent" class="text-btn" type="button">Clear</button></div>
+      <div id="recentSearches" class="recent-list"></div>
+    </section>
+
+    <footer><span>SkyCast</span><span>Built with HTML · CSS · JavaScript · WeatherAPI</span></footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
